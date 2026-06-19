@@ -1,11 +1,11 @@
 ﻿/* 
 ========================================================================
    NAVRON CALCULATOR SUITE - CORE JAVASCRIPT LOGIC (V3)
-   Multi-page Portability, Bilingual Dictionary, Live Cursor Commas, PWA Register
+   Multi-page Portability, English Dictionary, Live Cursor Commas, PWA Register
 ======================================================================== 
 */
 
-// --- Dynamic Languages Translation Dictionaries ---
+// --- English Translation Dictionary ---
 const translations = {
   en: {
     // Header
@@ -35,20 +35,20 @@ const translations = {
     // Calculator Views
     btnBackHome: "Back to Suite",
     tabNormalMode: "Normal Mode",
-    tabReverseMode: "Reverse Mode",
+    tabReverseMode: "Target Amount Calculator",
     
     // Form Inputs
     labelAmount: "Loan Amount",
     labelRate: "Interest Rate (per month)",
     labelDuration: "Time Duration",
     labelUnit: "Unit",
-    labelFinalAmount: "Desired Final Amount",
+    labelFinalAmount: "Total Amount to Receive",
     labelFee: "Processing Fee (Optional)",
     labelCharges: "Extra Charges (Optional)",
     placeholderAmount: "e.g. 100,000",
     placeholderRate: "Enter monthly rate (%)",
     placeholderDuration: "e.g. 12",
-    placeholderFinalAmount: "e.g. 136,000",
+    placeholderFinalAmount: "e.g. 1,36,000",
     placeholderFee: "e.g. 1,000",
     placeholderCharges: "e.g. 500",
     btnCalculate: "Calculate Interest",
@@ -97,105 +97,10 @@ const translations = {
     
     // Validation Errors
     errAmount: "Please enter a valid Loan Amount greater than 0.",
-    errFinalAmount: "Please enter a Desired Final Amount greater than the Loan Amount.",
+    errFinalAmount: "Please enter a Total Amount to Receive greater than the Loan Amount.",
     errRate: "Please enter a valid Interest Rate greater than 0.",
     errDuration: "Please enter a valid Time Duration greater than 0.",
     errFormat: "Please fill in all required inputs correctly."
-  },
-  hi: {
-    // Header
-    suiteTitle: "नवरॉन सूट",
-    suiteSubtitle: "स्मार्ट कैलकुलेटर",
-    metaTitle: "स्मार्ट कैलकुलेटर सूट",
-    metaSubtitle: "सभी आवश्यक कैलकुलेटर एक ही स्थान पर",
-    placeholderSearch: "कैलकुलेटर खोजें...",
-    breadcrumbsHome: "होम",
-    
-    // Categories
-    catAll: "सभी",
-    catFinance: "वित्त",
-    catBusiness: "व्यापार",
-    catTax: "टैक्स",
-    catInvestment: "निवेश",
-    catDaily: "दैनिक उपयोग",
-    catUtility: "उपयोगिता",
-    clearFilters: "फ़िल्टर साफ़ करें",
-
-    // Homepage sections
-    recentCalcs: "हाल ही में उपयोग किया गया",
-    popularCalcs: "लोकप्रिय कैलकुलेटर",
-    featuredCalcs: "विशेष कैलकुलेटर",
-    emptyRecent: "कोई हाल ही में उपयोग किया गया कैलकुलेटर नहीं है।",
-
-    // Calculator Views
-    btnBackHome: "सूट पर वापस जाएं",
-    tabNormalMode: "सामान्य मोड",
-    tabReverseMode: "रिवर्स मोड",
-    
-    // Form Inputs
-    labelAmount: "ऋण राशि (प्रिंसिपल)",
-    labelRate: "ब्याज दर (प्रति माह)",
-    labelDuration: "समयावधि",
-    labelUnit: "इकाई",
-    labelFinalAmount: "वांछित अंतिम राशि",
-    labelFee: "प्रोसेसिंग शुल्क (वैकल्पिक)",
-    labelCharges: "अतिरिक्त शुल्क (वैकल्पिक)",
-    placeholderAmount: "जैसे: 1,00,000",
-    placeholderRate: "मासिक दर दर्ज करें (%)",
-    placeholderDuration: "जैसे: 12",
-    placeholderFinalAmount: "जैसे: 1,36,000",
-    placeholderFee: "जैसे: 1,000",
-    placeholderCharges: "जैसे: 500",
-    btnCalculate: "ब्याज की गणना करें",
-    btnClearInputs: "इनपुट साफ़ करें",
-    
-    // Result cards titles
-    resHeader: "गणना का विवरण",
-    cardTotalAmount: "प्राप्त होने वाली कुल राशि",
-    cardTotalInterest: "कुल ब्याज (लाभ)",
-    cardPrincipal: "मूलधन (ऋण राशि)",
-    cardDuration: "समयावधि",
-    cardRate: "ब्याज दर",
-    cardEffectiveRate: "प्रभावी मासिक दर",
-    cardCalculationTime: "गणना की तिथि और समय",
-    cardMonthlyInterest: "मासिक ब्याज",
-    cardYearlyInterest: "वार्षिक ब्याज",
-    cardDailyInterest: "दैनिक ब्याज",
-    cardNetProfit: "शुद्ध लाभ (शुल्कों के बाद)",
-    cardNetProfitValue: "शुद्ध लाभ",
-    cardProcessingFee: "भुगतान किया गया प्रोसेसिंग शुल्क",
-    cardExtraCharges: "भुगतान किया गया अतिरिक्त शुल्क",
-    
-    // Coming soon
-    comingSoonTitle: "जल्द ही आ रहा है",
-    comingSoonMessage: "यह कैलकुलेटर वर्तमान में विकास के अधीन है और भविष्य के अपडेट में उपलब्ध होगा। नवरॉन सूट में अधिक शक्तिशाली उपकरणों के लिए बने रहें।",
-    btnBackDashboard: "डैशबोर्ड पर वापस",
-    
-    // Footer Links
-    footAbout: "हमारे बारे में",
-    footContact: "संपर्क",
-    footPrivacy: "गोपनीयता नीति",
-    footTerms: "सेवा की शर्तें",
-    footBranding: "© 2026 नवरॉन सूट। ऑफलाइन और इंस्टॉल करने योग्य।",
-
-    // Actions & Toasts
-    copiedToast: "परिणाम क्लिपबोर्ड पर कॉपी हो गया!",
-    pdfStart: "PDF स्टेटमेंट बनाया जा रहा है...",
-    pdfSuccess: "PDF सफलतापूर्वक डाउनलोड हो गया!",
-    pdfFail: "PDF रेंडरिंग विफल रही। कृपया प्रिंट करने का प्रयास करें।",
-    pngStart: "गणना छवि रेंडर की जा रही है...",
-    pngSuccess: "छवि सफलतापूर्वक डाउनलोड हो गई!",
-    resetToast: "कैलकुलेटर इनपुट रीसेट हो गए।",
-    restoreToast: "गणना सफलतापूर्वक पुनर्स्थापित की गई!",
-    historyCleared: "गणना इतिहास साफ़ कर दिया गया।",
-    historyConfirm: "क्या आप वाकई सभी गणना इतिहास साफ़ करना चाहते हैं?",
-    
-    // Validation Errors
-    errAmount: "कृपया 0 से अधिक वैध ऋण राशि दर्ज करें।",
-    errFinalAmount: "कृपया ऋण राशि से अधिक वांछित अंतिम राशि दर्ज करें।",
-    errRate: "कृपया 0 से अधिक वैध ब्याज दर दर्ज करें।",
-    errDuration: "कृपया 0 से अधिक वैध समयावधि दर्ज करें।",
-    errFormat: "कृपया सभी आवश्यक इनपुट सही ढंग से भरें।"
   }
 };
 // ==========================================
@@ -266,27 +171,19 @@ function handleLiveCommaFormatting(inputElement, formatType = 'indian') {
 // ==========================================
 // 2. Global State & LocalStorage Caches
 // ==========================================
-let currentLanguage = localStorage.getItem('navron_lang') || 'en';
-let currentCurrency = localStorage.getItem('navron_currency') || 'INR';
+let currentCurrency = 'INR';
 let currentTheme = localStorage.getItem('navron_theme') || 'light';
 
-// Currency Symbols and Formatting Config mappings
+// INR-only currency configuration
 const currenciesConfig = {
-  INR: { symbol: '₹', locale: 'en-IN', formatType: 'indian' },
-  USD: { symbol: '$', locale: 'en-US', formatType: 'intl' },
-  EUR: { symbol: '€', locale: 'en-IE', formatType: 'intl' },
-  GBP: { symbol: '£', locale: 'en-GB', formatType: 'intl' },
-  AED: { symbol: 'د.إ', locale: 'ar-AE', formatType: 'intl' },
-  SAR: { symbol: '﷼', locale: 'ar-SA', formatType: 'intl' }
+  INR: { symbol: '₹', locale: 'en-IN', formatType: 'indian' }
 };
 
 // Helper format output currency
 function formatCurrency(value) {
-  const conf = currenciesConfig[currentCurrency] || currenciesConfig.INR;
-  // Intl format currency
-  return new Intl.NumberFormat(conf.locale, {
+  return new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: currentCurrency,
+    currency: 'INR',
     maximumFractionDigits: 2,
     minimumFractionDigits: 0
   }).format(value);
@@ -317,7 +214,7 @@ function updateRecentCalculators(calcId, calcName, url) {
 // 3. Dynamic Localizer Engine
 // ==========================================
 function applyTranslations() {
-  const dict = translations[currentLanguage];
+  const dict = translations.en;
   
   // Update translation attributes [data-translate]
   document.querySelectorAll('[data-translate]').forEach(el => {
@@ -337,7 +234,7 @@ function applyTranslations() {
   if (searchInput) searchInput.setAttribute('placeholder', dict.placeholderSearch);
 
   // Update dynamic values in calculations UI
-  const formatConf = currenciesConfig[currentCurrency];
+  const formatConf = currenciesConfig.INR;
   document.querySelectorAll('.input-symbol').forEach(el => {
     el.textContent = formatConf.symbol;
   });
@@ -361,8 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Settings elements
   const themeToggleBtn = document.getElementById('theme-toggle');
-  const langToggleBtn = document.getElementById('lang-toggle');
-  const currencyDropdownSelect = document.getElementById('currency-dropdown');
 
   // Bind settings listeners
   if (themeToggleBtn) {
@@ -370,70 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
       currentTheme = currentTheme === 'light' ? 'dark' : 'light';
       localStorage.setItem('navron_theme', currentTheme);
       applyTheme();
-    });
-  }
-
-  if (langToggleBtn) {
-    // Render current button indicator text
-    langToggleBtn.textContent = currentLanguage === 'en' ? 'हिन्दी' : 'English';
-    langToggleBtn.addEventListener('click', () => {
-      currentLanguage = currentLanguage === 'en' ? 'hi' : 'en';
-      localStorage.setItem('navron_lang', currentLanguage);
-      langToggleBtn.textContent = currentLanguage === 'en' ? 'हिन्दी' : 'English';
-      applyTranslations();
-      
-      // If interest calculator page, update displays
-      if (typeof handleAmountInput === 'function') {
-        handleAmountInput();
-        handleRateInput();
-      }
-      
-      // Update history render if applicable
-      if (typeof renderHistory === 'function') {
-        renderHistory();
-      }
-    });
-  }
-
-  if (currencyDropdownSelect) {
-    currencyDropdownSelect.value = currentCurrency;
-    currencyDropdownSelect.addEventListener('change', () => {
-      currentCurrency = currencyDropdownSelect.value;
-      localStorage.setItem('navron_currency', currentCurrency);
-      applyTranslations();
-      
-      // Trigger formatting re-syncs
-      const formatType = currenciesConfig[currentCurrency].formatType;
-      
-      const loanAmount = document.getElementById('loan-amount');
-      const finalAmount = document.getElementById('final-amount');
-      const processingFee = document.getElementById('processing-fee');
-      const extraCharges = document.getElementById('extra-charges');
-      
-      [loanAmount, finalAmount, processingFee, extraCharges].forEach(el => {
-        if (el) {
-          // Re-trigger live formatting on existing values
-          const cleanVal = parseFormattedNumber(el.value);
-          if (cleanVal > 0) {
-            el.dispatchEvent(new Event('input'));
-          }
-        }
-      });
-
-      if (typeof handleAmountInput === 'function') {
-        handleAmountInput();
-        handleRateInput();
-      }
-
-      // If results already exist, recalculate automatically to swap currency symbol
-      const calculatorForm = document.getElementById('calculator-form');
-      if (calculatorForm && document.getElementById('results-section') && !document.getElementById('results-section').classList.contains('hidden')) {
-        calculatorForm.dispatchEvent(new Event('submit'));
-      }
-      
-      if (typeof renderHistory === 'function') {
-        renderHistory();
-      }
     });
   }
 

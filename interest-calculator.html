@@ -77,22 +77,6 @@
       </a>
       
       <div class="header-controls">
-        <button id="lang-toggle" class="lang-toggle-btn" aria-label="Switch Language">हिन्दी</button>
-        
-        <div class="currency-selector-wrapper">
-          <select id="currency-dropdown" class="currency-dropdown-select" aria-label="Select Currency">
-            <option value="INR">₹ INR</option>
-            <option value="USD">$ USD</option>
-            <option value="EUR">€ EUR</option>
-            <option value="GBP">£ GBP</option>
-            <option value="AED">د.इ AED</option>
-            <option value="SAR">﷼ SAR</option>
-          </select>
-          <div class="currency-dropdown-arrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
-        </div>
-
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
           <span class="sun-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
@@ -125,7 +109,7 @@
       <!-- Mode Tabs -->
       <div class="calculator-modes-tab" role="tablist">
         <button id="mode-normal-btn" class="mode-tab-btn active" role="tab" aria-selected="true" data-translate="tabNormalMode">Normal Mode</button>
-        <button id="mode-reverse-btn" class="mode-tab-btn" role="tab" aria-selected="false" data-translate="tabReverseMode">Reverse Mode</button>
+        <button id="mode-reverse-btn" class="mode-tab-btn" role="tab" aria-selected="false" data-translate="tabReverseMode">Target Amount Calculator</button>
       </div>
 
       <form id="calculator-form" novalidate>
@@ -164,15 +148,15 @@
           </div>
         </div>
 
-        <!-- Inputs Specific to Reverse Mode -->
+        <!-- Inputs Specific to Target Amount Calculator -->
         <div id="reverse-inputs-container" class="hidden">
           <div class="input-group">
             <label for="final-amount">
-              <span data-translate="labelFinalAmount">Desired Final Amount</span>
+              <span data-translate="labelFinalAmount">Total Amount to Receive</span>
               <span class="input-symbol">₹</span>
             </label>
             <div class="input-wrapper">
-              <input type="text" id="final-amount" data-translate="placeholderFinalAmount" placeholder="e.g. 136,000" autocomplete="off">
+              <input type="text" id="final-amount" data-translate="placeholderFinalAmount" placeholder="e.g. 1,36,000" autocomplete="off">
             </div>
             <div id="final-live-preview" class="live-preview-text">₹ 0</div>
           </div>
@@ -201,29 +185,6 @@
               <div class="select-arrow">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Optional Upgrades Inputs -->
-        <div class="input-row">
-          <div class="input-group flex-1">
-            <label for="processing-fee">
-              <span data-translate="labelFee">Processing Fee (Optional)</span>
-              <span class="input-symbol">₹</span>
-            </label>
-            <div class="input-wrapper">
-              <input type="text" id="processing-fee" data-translate="placeholderFee" placeholder="e.g. 1,000" autocomplete="off">
-            </div>
-          </div>
-          
-          <div class="input-group flex-1">
-            <label for="extra-charges">
-              <span data-translate="labelCharges">Extra Charges (Optional)</span>
-              <span class="input-symbol">₹</span>
-            </label>
-            <div class="input-wrapper">
-              <input type="text" id="extra-charges" data-translate="placeholderCharges" placeholder="e.g. 500" autocomplete="off">
             </div>
           </div>
         </div>
@@ -539,19 +500,12 @@
 
       // Attach dynamic formatting listeners
       const setupFormatting = () => {
-        const type = currenciesConfig[currentCurrency].formatType;
-        handleLiveCommaFormatting(loanAmountInput, type);
-        handleLiveCommaFormatting(finalAmountInput, type);
-        handleLiveCommaFormatting(processingFeeInput, type);
-        handleLiveCommaFormatting(extraChargesInput, type);
+        handleLiveCommaFormatting(loanAmountInput, 'indian');
+        handleLiveCommaFormatting(finalAmountInput, 'indian');
+        handleLiveCommaFormatting(processingFeeInput, 'indian');
+        handleLiveCommaFormatting(extraChargesInput, 'indian');
       };
       setupFormatting();
-
-      // Trigger formatting re-registration if currency updates
-      const currencyDropdown = document.getElementById('currency-dropdown');
-      if (currencyDropdown) {
-        currencyDropdown.addEventListener('change', setupFormatting);
-      }
 
       // Previews updates
       window.handleAmountInput = () => {
@@ -560,7 +514,7 @@
           amountLivePreview.textContent = `${currenciesConfig[currentCurrency].symbol} 0`;
         } else {
           const formatted = formatCurrency(val);
-          const words = currentCurrency === 'INR' ? getIndianNumberWords(val) : '';
+          const words = getIndianNumberWords(val);
           amountLivePreview.textContent = `${formatted} ${words}`.trim();
         }
       };
@@ -571,7 +525,7 @@
           finalLivePreview.textContent = `${currenciesConfig[currentCurrency].symbol} 0`;
         } else {
           const formatted = formatCurrency(val);
-          const words = currentCurrency === 'INR' ? getIndianNumberWords(val) : '';
+          const words = getIndianNumberWords(val);
           finalLivePreview.textContent = `${formatted} ${words}`.trim();
         }
       };
@@ -643,10 +597,10 @@
         const time = parseFloat(timeDurationInput.value);
         const timeUnit = timeUnitSelect.value;
         
-        const processingFee = parseFormattedNumber(processingFeeInput.value) || 0;
-        const extraCharges = parseFormattedNumber(extraChargesInput.value) || 0;
+        const processingFee = processingFeeInput ? parseFormattedNumber(processingFeeInput.value) || 0 : 0;
+        const extraCharges = extraChargesInput ? parseFormattedNumber(extraChargesInput.value) || 0 : 0;
 
-        const dict = translations[currentLanguage];
+        const dict = translations.en;
 
         // Shared validation
         if (isNaN(principal) || principal <= 0) {
@@ -675,7 +629,7 @@
           interest = principal * rateDecimal * totalMonths;
           totalAmount = principal + interest;
         } else {
-          // Reverse Mode
+          // Target Amount Calculator
           totalAmount = parseFormattedNumber(finalAmountInput.value);
           if (isNaN(totalAmount) || totalAmount <= principal) {
             showAlert(dict.errFinalAmount);
@@ -776,7 +730,7 @@
           resultsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
           saveToHistory(calculatedResults);
-        }, 1200); // 1.2s spinner ring loader
+        }, 2000);
       };
 
       calculatorForm.addEventListener('submit', handleFormSubmit);
@@ -795,7 +749,7 @@
         resultsSection.classList.add('hidden');
         calculatedResults = null;
         
-        showToast(translations[currentLanguage].resetToast);
+        showToast(translations.en.resetToast);
       };
       clearInputsBtn.addEventListener('click', handleClearInputs);
 
@@ -811,7 +765,7 @@
         historyList.classList.remove('hidden');
         historyList.innerHTML = '';
 
-        const dict = translations[currentLanguage];
+        const dict = translations.en;
 
         historyData.forEach(item => {
           const card = document.createElement('div');
@@ -852,8 +806,8 @@
             timeDurationInput.value = item.time;
             timeUnitSelect.value = item.timeUnit;
             
-            if (item.processingFee > 0) processingFeeInput.value = item.processingFee;
-            if (item.extraCharges > 0) extraChargesInput.value = item.extraCharges;
+            if (processingFeeInput && item.processingFee > 0) processingFeeInput.value = item.processingFee;
+            if (extraChargesInput && item.extraCharges > 0) extraChargesInput.value = item.extraCharges;
 
             if (item.mode === 'normal') {
               interestRateInput.value = item.rate;
@@ -877,7 +831,6 @@
             }
 
             // Sync dynamic preview labels
-            const formatType = currenciesConfig[currentCurrency].formatType;
             [loanAmountInput, finalAmountInput, processingFeeInput, extraChargesInput].forEach(el => {
               if (el) el.dispatchEvent(new Event('input'));
             });
@@ -948,7 +901,7 @@
       };
 
       clearHistoryBtn.addEventListener('click', () => {
-        const dict = translations[currentLanguage];
+        const dict = translations.en;
         if (confirm(dict.historyConfirm)) {
           historyData = [];
           localStorage.removeItem('navron_si_history');
@@ -987,10 +940,6 @@
 🔥 Total Interest (Profit): ${formatCurrency(calculatedResults.interest)}
 💵 Total Amount to Receive: ${formatCurrency(calculatedResults.totalAmount)}
 
-⚙️ Fee & Charges Paid:
-• Processing Fee: ${formatCurrency(calculatedResults.processingFee)}
-• Extra Charges: ${formatCurrency(calculatedResults.extraCharges)}
-💸 Net Profit after Fees: ${formatCurrency(calculatedResults.netProfit)}
 🎯 Effective Rate: ${calculatedResults.rate.toFixed(2)}% Monthly
 
 📅 Breakdown Details:
@@ -1009,7 +958,7 @@ Calculated with Navron Calculator Suite.`;
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(text)
-            .then(() => showToast(translations[currentLanguage].copiedToast))
+            .then(() => showToast(translations.en.copiedToast))
             .catch(() => showToast('Failed to copy.'));
         } else {
           const textarea = document.createElement('textarea');
@@ -1019,7 +968,7 @@ Calculated with Navron Calculator Suite.`;
           textarea.select();
           try {
             document.execCommand('copy');
-            showToast(translations[currentLanguage].copiedToast);
+            showToast(translations.en.copiedToast);
           } catch (err) {
             showToast('Failed to copy.');
           }
@@ -1030,7 +979,7 @@ Calculated with Navron Calculator Suite.`;
       // PDF Exporter
       pdfBtn.addEventListener('click', () => {
         if (!calculatedResults) return;
-        const dict = translations[currentLanguage];
+        const dict = translations.en;
         showToast(dict.pdfStart);
         
         printableResultContainer.classList.add('pdf-rendering');
@@ -1062,7 +1011,7 @@ Calculated with Navron Calculator Suite.`;
       // PNG Exporter
       pngBtn.addEventListener('click', () => {
         if (!calculatedResults) return;
-        const dict = translations[currentLanguage];
+        const dict = translations.en;
         showToast(dict.pngStart);
 
         html2canvas(printableResultContainer, {
