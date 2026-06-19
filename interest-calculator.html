@@ -1,0 +1,1097 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Optimization -->
+  <title>Interest Calculator - Navron Suite</title>
+  <meta name="description" content="Calculate simple interest monthly, daily, and yearly with Navron Calculator. Includes preset chips, dynamic currencies, bilingual support, and reverse calculator.">
+  <meta name="keywords" content="interest calculator, simple interest, rupee interest calculator, reverse interest calculator, offline calculator, finance tool">
+  <meta name="author" content="Navron Smart Tools">
+  <link rel="canonical" href="https://navroncalculator.com/interest-calculator.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://navroncalculator.com/interest-calculator.html">
+  <meta property="og:title" content="Interest Calculator - Navron Suite">
+  <meta property="og:description" content="Smart simple interest calculator with normal and reverse modes. Works completely offline, downloads results as PDF or PNG image.">
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M12 2L2 7L12 12L22 7L12 2Z' fill='%232563EB'/%3E%3Cpath d='M2 17L12 22L22 17' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M2 12L12 17L22 12' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Question",
+    "name": "How to calculate simple interest?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Simple Interest = Principal × Monthly Rate × Total Months. If duration is in years, multiply it by 12."
+    }
+  }
+  </script>
+
+  <!-- PWA & Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M12 2L2 7L12 12L22 7L12 2Z' fill='%232563EB'/%3E%3Cpath d='M2 17L12 22L22 17' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M2 12L12 17L22 12' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563EB">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Exporters CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYjYiPSqHHDb58B0yaPfYLjYEXyyp8AM5tcJHUROkk4NIIZoRyOMu9q1JDVnL46QACoFR36RqFG16UtGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZv3KLFrT474v4Es1Wqgiy9WcQAdf7jA917SgH9cW5VzGPZsJ4Llh0ZOkSSTdA4n2TshT0J6G0c4dK5N0yW01Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <a href="index.html" class="brand" aria-label="Navron Suite Home">
+        <div class="logo-container">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#logo-grad)" />
+            <path d="M2 17L12 22L22 17" stroke="url(#logo-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="url(#logo-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#2563EB" />
+                <stop offset="1" stop-color="#3B82F6" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="title-meta">
+          <h1 data-translate="suiteTitle">Navron Suite</h1>
+          <p class="subtitle" data-translate="suiteSubtitle">Smart Calculators</p>
+        </div>
+      </a>
+      
+      <div class="header-controls">
+        <button id="lang-toggle" class="lang-toggle-btn" aria-label="Switch Language">हिन्दी</button>
+        
+        <div class="currency-selector-wrapper">
+          <select id="currency-dropdown" class="currency-dropdown-select" aria-label="Select Currency">
+            <option value="INR">₹ INR</option>
+            <option value="USD">$ USD</option>
+            <option value="EUR">€ EUR</option>
+            <option value="GBP">£ GBP</option>
+            <option value="AED">د.इ AED</option>
+            <option value="SAR">﷼ SAR</option>
+          </select>
+          <div class="currency-dropdown-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </div>
+
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <span class="sun-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          </span>
+          <span class="moon-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html" data-translate="breadcrumbsHome">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      <span data-translate="cardRate">Interest Calculator</span>
+    </nav>
+
+    <!-- Navigation Header -->
+    <div class="nav-back-header">
+      <a href="index.html" class="btn-back-home" aria-label="Back to home">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        <span data-translate="btnBackHome">Back to Suite</span>
+      </a>
+      <h2 class="calc-meta-title" data-translate="cardRate">Interest Calculator</h2>
+    </div>
+
+    <!-- Calculator Card -->
+    <section class="calculator-card glass-card">
+      <!-- Mode Tabs -->
+      <div class="calculator-modes-tab" role="tablist">
+        <button id="mode-normal-btn" class="mode-tab-btn active" role="tab" aria-selected="true" data-translate="tabNormalMode">Normal Mode</button>
+        <button id="mode-reverse-btn" class="mode-tab-btn" role="tab" aria-selected="false" data-translate="tabReverseMode">Reverse Mode</button>
+      </div>
+
+      <form id="calculator-form" novalidate>
+        <!-- Input: Loan Amount -->
+        <div class="input-group">
+          <label for="loan-amount">
+            <span data-translate="labelAmount">Loan Amount</span>
+            <span class="input-symbol">₹</span>
+          </label>
+          <div class="input-wrapper">
+            <input type="text" id="loan-amount" data-translate="placeholderAmount" placeholder="e.g. 100,000" required autocomplete="off">
+          </div>
+          <div id="amount-live-preview" class="live-preview-text">₹ 0</div>
+        </div>
+
+        <!-- Inputs Specific to Normal Mode -->
+        <div id="normal-inputs-container">
+          <div class="input-group">
+            <label>
+              <span data-translate="labelRate">Interest Rate (per month)</span>
+            </label>
+            
+            <div class="rate-chips" role="group" aria-label="Rate presets">
+              <button type="button" class="rate-chip" data-rate="2">₹2 <span class="chip-desc">(2%)</span></button>
+              <button type="button" class="rate-chip" data-rate="3">₹3 <span class="chip-desc">(3%)</span></button>
+              <button type="button" class="rate-chip" data-rate="5">₹5 <span class="chip-desc">(5%)</span></button>
+              <button type="button" class="rate-chip" data-rate="8">₹8 <span class="chip-desc">(8%)</span></button>
+              <button type="button" class="rate-chip active" id="chip-custom" data-rate="custom" data-translate="catAll">Custom</button>
+            </div>
+
+            <div class="input-wrapper rate-input-wrapper">
+              <input type="number" id="interest-rate" data-translate="placeholderRate" placeholder="Enter monthly rate (%)" min="0.01" step="0.01" autocomplete="off">
+              <span class="input-unit-label">% / month</span>
+            </div>
+            <div id="rate-live-preview" class="live-preview-text">₹0 per ₹100 per month (0% Monthly Interest)</div>
+          </div>
+        </div>
+
+        <!-- Inputs Specific to Reverse Mode -->
+        <div id="reverse-inputs-container" class="hidden">
+          <div class="input-group">
+            <label for="final-amount">
+              <span data-translate="labelFinalAmount">Desired Final Amount</span>
+              <span class="input-symbol">₹</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="text" id="final-amount" data-translate="placeholderFinalAmount" placeholder="e.g. 136,000" autocomplete="off">
+            </div>
+            <div id="final-live-preview" class="live-preview-text">₹ 0</div>
+          </div>
+        </div>
+
+        <!-- Shared Inputs: Time Duration -->
+        <div class="input-row">
+          <div class="input-group flex-2">
+            <label for="time-duration">
+              <span data-translate="labelDuration">Time Duration</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="number" id="time-duration" data-translate="placeholderDuration" placeholder="e.g. 12" min="0.1" step="any" required autocomplete="off">
+            </div>
+          </div>
+
+          <div class="input-group flex-1">
+            <label for="time-unit">
+              <span data-translate="labelUnit">Unit</span>
+            </label>
+            <div class="select-wrapper">
+              <select id="time-unit">
+                <option value="months" selected>Months</option>
+                <option value="years">Years</option>
+              </select>
+              <div class="select-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Optional Upgrades Inputs -->
+        <div class="input-row">
+          <div class="input-group flex-1">
+            <label for="processing-fee">
+              <span data-translate="labelFee">Processing Fee (Optional)</span>
+              <span class="input-symbol">₹</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="text" id="processing-fee" data-translate="placeholderFee" placeholder="e.g. 1,000" autocomplete="off">
+            </div>
+          </div>
+          
+          <div class="input-group flex-1">
+            <label for="extra-charges">
+              <span data-translate="labelCharges">Extra Charges (Optional)</span>
+              <span class="input-symbol">₹</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="text" id="extra-charges" data-translate="placeholderCharges" placeholder="e.g. 500" autocomplete="off">
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons Row -->
+        <div class="form-action-row">
+          <button type="submit" id="calculate-btn" class="btn-primary">
+            <span data-translate="btnCalculate">Calculate Interest</span>
+            <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+          <button type="button" id="clear-inputs-btn" class="btn-clear-inputs" data-translate="btnClearInputs" aria-label="Clear Inputs">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Error Box -->
+    <div id="alert-box" class="alert-box hidden" role="alert">
+      <span class="alert-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+      </span>
+      <span id="alert-message" class="alert-message">Please fill in all fields correctly.</span>
+    </div>
+
+    <!-- Loading Ring -->
+    <div id="calculator-loader" class="calculator-loader-wrapper hidden">
+      <div class="glass-loader-card">
+        <div class="spinner-ring">
+          <div class="spinner-ring-inner"></div>
+        </div>
+        <p class="loader-text">Processing Calculations...</p>
+        <p class="loader-subtext">Navron Smart Math Engine</p>
+      </div>
+    </div>
+
+    <!-- Result cards displayed exactly in order -->
+    <section id="results-section" class="results-section hidden">
+      <div id="printable-result-container">
+        
+        <!-- Print Header -->
+        <div class="result-receipt-header hidden-screen">
+          <div class="receipt-brand">
+            <h2>Navron Smart Calculator Suite</h2>
+            <p>Interest Calculation Statement</p>
+          </div>
+          <div class="receipt-date" id="receipt-header-date">--</div>
+        </div>
+
+        <div class="section-title">
+          <h2 data-translate="resHeader">Calculation Details</h2>
+        </div>
+
+        <!-- 1. Total Amount to Receive (Largest card) -->
+        <div class="result-card glass-card total-amount-card-largest animated-card">
+          <div class="card-content">
+            <span class="card-title" data-translate="cardTotalAmount">Total Amount to Receive</span>
+            <span class="card-value green-highlight" id="res-total-amount">₹0</span>
+            <span class="card-subtitle" id="res-total-amount-subtitle">Principal + Total Interest</span>
+          </div>
+        </div>
+
+        <!-- 2. Total Interest (Your Profit) with glowing green effect -->
+        <div class="result-card glass-card profit-card-large-glowing animated-card">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <span class="card-title" data-translate="cardTotalInterest">Total Interest (Profit)</span>
+            <span class="card-value green-highlight" id="res-total-interest">₹0</span>
+            <span class="card-subtitle" id="res-total-interest-subtitle">Earned over the specified period</span>
+          </div>
+        </div>
+
+        <!-- 3-7. Parameters list Details Card -->
+        <div class="result-card glass-card details-list-card animated-card">
+          <!-- 3. Principal Amount -->
+          <div class="list-item-row">
+            <span class="item-label" data-translate="cardPrincipal">Principal Amount</span>
+            <span class="item-value green-highlight" id="res-principal-amount">₹0</span>
+          </div>
+          <!-- 4. Time Duration -->
+          <div class="list-item-row">
+            <span class="item-label" data-translate="cardDuration">Time Duration</span>
+            <span class="item-value" id="res-time-duration-label">--</span>
+          </div>
+          <!-- 5. Interest Rate -->
+          <div class="list-item-row">
+            <span class="item-label" data-translate="cardRate">Interest Rate</span>
+            <span class="item-value" id="res-interest-rate-label">--</span>
+          </div>
+          <!-- 6. Effective Monthly Rate -->
+          <div class="list-item-row">
+            <span class="item-label" data-translate="cardEffectiveRate">Effective Monthly Rate</span>
+            <span class="item-value" id="res-effective-rate-label">--</span>
+          </div>
+          <!-- 7. Calculation Date & Time -->
+          <div class="list-item-row">
+            <span class="item-label" data-translate="cardCalculationTime">Calculation Date & Time</span>
+            <span class="item-value" id="res-calculation-time">--</span>
+          </div>
+          <!-- Optional Processing Fee Paid Row -->
+          <div class="list-item-row hidden" id="res-fee-row">
+            <span class="item-label" data-translate="cardProcessingFee">Processing Fee Paid</span>
+            <span class="item-value" id="res-fee-value">₹0</span>
+          </div>
+          <!-- Optional Extra Charges Paid Row -->
+          <div class="list-item-row hidden" id="res-charges-row">
+            <span class="item-label" data-translate="cardExtraCharges">Extra Charges Paid</span>
+            <span class="item-value" id="res-charges-value">₹0</span>
+          </div>
+          <!-- Optional Net Profit Row -->
+          <div class="list-item-row hidden" id="res-net-profit-row">
+            <span class="item-label" data-translate="cardNetProfit">Net Profit (After Charges)</span>
+            <span class="item-value green-highlight" id="res-net-profit-value">₹0</span>
+          </div>
+        </div>
+
+        <!-- 8-10. Breakdown mini cards grid -->
+        <div class="results-grid">
+          <!-- 8. Monthly Interest -->
+          <div class="result-card glass-card breakdown-card animated-card">
+            <span class="card-title" data-translate="cardMonthlyInterest">Monthly Interest</span>
+            <span class="card-value green-highlight" id="res-monthly-interest">₹0</span>
+          </div>
+          <!-- 9. Yearly Interest -->
+          <div class="result-card glass-card breakdown-card animated-card">
+            <span class="card-title" data-translate="cardYearlyInterest">Yearly Interest</span>
+            <span class="card-value green-highlight" id="res-yearly-interest">₹0</span>
+          </div>
+          <!-- 10. Daily Interest -->
+          <div class="result-card glass-card breakdown-card animated-card">
+            <span class="card-title" data-translate="cardDailyInterest">Daily Interest</span>
+            <span class="card-value green-highlight" id="res-daily-interest">₹0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="action-buttons-complex-grid">
+        <button id="copy-btn" class="btn-action" aria-label="Copy Result">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          <span>Copy</span>
+        </button>
+
+        <button id="pdf-btn" class="btn-action btn-pdf" aria-label="Download as PDF">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+          <span>PDF</span>
+        </button>
+
+        <button id="png-btn" class="btn-action btn-png" aria-label="Download as Image">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+          <span>Image</span>
+        </button>
+
+        <button id="print-btn" class="btn-action" aria-label="Print Statement">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14" rx="1"/><rect width="12" height="4" x="6" y="2" rx="1"/></svg>
+          <span>Print</span>
+        </button>
+
+        <button id="reset-btn" class="btn-action btn-danger" aria-label="Reset Calculator">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          <span>Reset</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- History list -->
+    <section class="history-section glass-card">
+      <div class="history-header">
+        <div class="history-title-container">
+          <svg class="history-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+          <h2>Calculation History</h2>
+        </div>
+        <button id="clear-history-btn" class="btn-text-danger" aria-label="Clear History">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+          <span data-translate="clearFilters">Clear All</span>
+        </button>
+      </div>
+
+      <div id="history-empty" class="history-empty">
+        <p>No recent calculations. Perform your first calculation above!</p>
+      </div>
+
+      <div id="history-list" class="history-list hidden">
+        <!-- Dynamic injections -->
+      </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div id="toast-banner" class="toast-banner hidden">
+      <span id="toast-message">Result copied to clipboard!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <nav class="footer-nav" aria-label="Footer Navigation">
+        <a href="about.html" class="footer-link" data-translate="footAbout">About Us</a>
+        <a href="contact.html" class="footer-link" data-translate="footContact">Contact</a>
+        <a href="privacy.html" class="footer-link" data-translate="footPrivacy">Privacy Policy</a>
+        <a href="terms.html" class="footer-link" data-translate="footTerms">Terms of Service</a>
+      </nav>
+      <p class="footer-copyright" data-translate="footBranding">© 2026 Navron Suite. Built Offline & Installable.</p>
+    </footer>
+  </div>
+
+  <!-- Shared JavaScript and Interest Page logic -->
+  <script src="script.js"></script>
+  <script>
+    // Flag this calculator page is active in recent list
+    if (typeof updateRecentCalculators === 'function') {
+      updateRecentCalculators('interest', 'Interest Calculator', 'interest-calculator.html');
+    }
+
+    // Dynamic Icon Database lookup map for printable outputs
+    const calculatorIcons = {
+      interest: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>`
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const modeNormalBtn = document.getElementById('mode-normal-btn');
+      const modeReverseBtn = document.getElementById('mode-reverse-btn');
+      const normalInputsContainer = document.getElementById('normal-inputs-container');
+      const reverseInputsContainer = document.getElementById('reverse-inputs-container');
+      
+      const loanAmountInput = document.getElementById('loan-amount');
+      const finalAmountInput = document.getElementById('final-amount');
+      const interestRateInput = document.getElementById('interest-rate');
+      const timeDurationInput = document.getElementById('time-duration');
+      const timeUnitSelect = document.getElementById('time-unit');
+      const processingFeeInput = document.getElementById('processing-fee');
+      const extraChargesInput = document.getElementById('extra-charges');
+      
+      const amountLivePreview = document.getElementById('amount-live-preview');
+      const finalLivePreview = document.getElementById('final-live-preview');
+      const rateLivePreview = document.getElementById('rate-live-preview');
+      const rateChips = document.querySelectorAll('.rate-chip');
+      const chipCustom = document.getElementById('chip-custom');
+      
+      const alertBox = document.getElementById('alert-box');
+      const alertMessage = document.getElementById('alert-message');
+      const calculatorLoader = document.getElementById('calculator-loader');
+      const resultsSection = document.getElementById('results-section');
+      const printableResultContainer = document.getElementById('printable-result-container');
+      const receiptHeaderDate = document.getElementById('receipt-header-date');
+      
+      // Output fields
+      const resTotalAmount = document.getElementById('res-total-amount');
+      const resTotalInterest = document.getElementById('res-total-interest');
+      const resPrincipalAmount = document.getElementById('res-principal-amount');
+      const resTimeDurationLabel = document.getElementById('res-time-duration-label');
+      const resInterestRateLabel = document.getElementById('res-interest-rate-label');
+      const resEffectiveRateLabel = document.getElementById('res-effective-rate-label');
+      const resCalculationTime = document.getElementById('res-calculation-time');
+      const resMonthlyInterest = document.getElementById('res-monthly-interest');
+      const resYearlyInterest = document.getElementById('res-yearly-interest');
+      const resDailyInterest = document.getElementById('res-daily-interest');
+      
+      // Upgrades Results fields
+      const resFeeRow = document.getElementById('res-fee-row');
+      const resFeeValue = document.getElementById('res-fee-value');
+      const resChargesRow = document.getElementById('res-charges-row');
+      const resChargesValue = document.getElementById('res-charges-value');
+      const resNetProfitRow = document.getElementById('res-net-profit-row');
+      const resNetProfitValue = document.getElementById('res-net-profit-value');
+      
+      const clearInputsBtn = document.getElementById('clear-inputs-btn');
+      const copyBtn = document.getElementById('copy-btn');
+      const pdfBtn = document.getElementById('pdf-btn');
+      const pngBtn = document.getElementById('png-btn');
+      const printBtn = document.getElementById('print-btn');
+      const resetBtn = document.getElementById('reset-btn');
+      
+      const historyEmpty = document.getElementById('history-empty');
+      const historyList = document.getElementById('history-list');
+      const clearHistoryBtn = document.getElementById('clear-history-btn');
+      
+      const toastBanner = document.getElementById('toast-banner');
+      const toastMessage = document.getElementById('toast-message');
+
+      let currentMode = 'normal'; // 'normal' or 'reverse'
+      let currentPresetRate = 'custom';
+      let historyData = [];
+      let calculatedResults = null;
+
+      // Mode switching handlers
+      const toggleMode = (mode) => {
+        currentMode = mode;
+        if (mode === 'normal') {
+          modeNormalBtn.classList.add('active');
+          modeNormalBtn.setAttribute('aria-selected', 'true');
+          modeReverseBtn.classList.remove('active');
+          modeReverseBtn.setAttribute('aria-selected', 'false');
+          normalInputsContainer.classList.remove('hidden');
+          reverseInputsContainer.classList.add('hidden');
+          
+          interestRateInput.setAttribute('required', 'true');
+          finalAmountInput.removeAttribute('required');
+        } else {
+          modeReverseBtn.classList.add('active');
+          modeReverseBtn.setAttribute('aria-selected', 'true');
+          modeNormalBtn.classList.remove('active');
+          modeNormalBtn.setAttribute('aria-selected', 'false');
+          reverseInputsContainer.classList.remove('hidden');
+          normalInputsContainer.classList.add('hidden');
+          
+          finalAmountInput.setAttribute('required', 'true');
+          interestRateInput.removeAttribute('required');
+        }
+        
+        hideAlert();
+        resultsSection.classList.add('hidden');
+      };
+
+      modeNormalBtn.addEventListener('click', () => toggleMode('normal'));
+      modeReverseBtn.addEventListener('click', () => toggleMode('reverse'));
+
+      // Attach dynamic formatting listeners
+      const setupFormatting = () => {
+        const type = currenciesConfig[currentCurrency].formatType;
+        handleLiveCommaFormatting(loanAmountInput, type);
+        handleLiveCommaFormatting(finalAmountInput, type);
+        handleLiveCommaFormatting(processingFeeInput, type);
+        handleLiveCommaFormatting(extraChargesInput, type);
+      };
+      setupFormatting();
+
+      // Trigger formatting re-registration if currency updates
+      const currencyDropdown = document.getElementById('currency-dropdown');
+      if (currencyDropdown) {
+        currencyDropdown.addEventListener('change', setupFormatting);
+      }
+
+      // Previews updates
+      window.handleAmountInput = () => {
+        const val = parseFormattedNumber(loanAmountInput.value);
+        if (isNaN(val) || val <= 0) {
+          amountLivePreview.textContent = `${currenciesConfig[currentCurrency].symbol} 0`;
+        } else {
+          const formatted = formatCurrency(val);
+          const words = currentCurrency === 'INR' ? getIndianNumberWords(val) : '';
+          amountLivePreview.textContent = `${formatted} ${words}`.trim();
+        }
+      };
+
+      const handleFinalAmountInput = () => {
+        const val = parseFormattedNumber(finalAmountInput.value);
+        if (isNaN(val) || val <= 0) {
+          finalLivePreview.textContent = `${currenciesConfig[currentCurrency].symbol} 0`;
+        } else {
+          const formatted = formatCurrency(val);
+          const words = currentCurrency === 'INR' ? getIndianNumberWords(val) : '';
+          finalLivePreview.textContent = `${formatted} ${words}`.trim();
+        }
+      };
+
+      window.handleRateInput = () => {
+        const val = parseFloat(interestRateInput.value);
+        const symbol = currenciesConfig[currentCurrency].symbol;
+        if (isNaN(val) || val <= 0) {
+          rateLivePreview.textContent = `${symbol}0 per ${symbol}100 per month (0% Monthly Interest)`;
+        } else {
+          rateLivePreview.textContent = `${symbol}${val} per ${symbol}100 per month (${val}% Monthly Interest)`;
+        }
+      };
+
+      // Chips presets logic
+      const selectRateChip = (chip) => {
+        rateChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        
+        const rateVal = chip.getAttribute('data-rate');
+        currentPresetRate = rateVal;
+
+        if (rateVal === 'custom') {
+          interestRateInput.removeAttribute('readonly');
+          interestRateInput.focus();
+        } else {
+          interestRateInput.value = rateVal;
+          interestRateInput.setAttribute('readonly', 'true');
+          handleRateInput();
+        }
+      };
+
+      rateChips.forEach(chip => {
+        chip.addEventListener('click', () => selectRateChip(chip));
+      });
+
+      interestRateInput.addEventListener('input', () => {
+        if (currentPresetRate !== 'custom') {
+          rateChips.forEach(c => c.classList.remove('active'));
+          chipCustom.classList.add('active');
+          currentPresetRate = 'custom';
+        }
+        handleRateInput();
+      });
+
+      loanAmountInput.addEventListener('input', handleAmountInput);
+      finalAmountInput.addEventListener('input', handleFinalAmountInput);
+      
+      // Initialize previews
+      handleAmountInput();
+      handleFinalAmountInput();
+      handleRateInput();
+
+      // Alerts
+      const showAlert = (message) => {
+        alertMessage.textContent = message;
+        alertBox.classList.remove('hidden');
+        alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      };
+      const hideAlert = () => alertBox.classList.add('hidden');
+
+      // Calculations Engine
+      const handleFormSubmit = (e) => {
+        e.preventDefault();
+        hideAlert();
+        resultsSection.classList.add('hidden');
+
+        const principal = parseFormattedNumber(loanAmountInput.value);
+        const time = parseFloat(timeDurationInput.value);
+        const timeUnit = timeUnitSelect.value;
+        
+        const processingFee = parseFormattedNumber(processingFeeInput.value) || 0;
+        const extraCharges = parseFormattedNumber(extraChargesInput.value) || 0;
+
+        const dict = translations[currentLanguage];
+
+        // Shared validation
+        if (isNaN(principal) || principal <= 0) {
+          showAlert(dict.errAmount);
+          return;
+        }
+        if (isNaN(time) || time <= 0) {
+          showAlert(dict.errDuration);
+          return;
+        }
+
+        let rate = 0;
+        let interest = 0;
+        let totalAmount = 0;
+
+        const totalMonths = timeUnit === 'years' ? time * 12 : time;
+
+        if (currentMode === 'normal') {
+          rate = parseFloat(interestRateInput.value);
+          if (isNaN(rate) || rate <= 0) {
+            showAlert(dict.errRate);
+            return;
+          }
+          
+          const rateDecimal = rate / 100;
+          interest = principal * rateDecimal * totalMonths;
+          totalAmount = principal + interest;
+        } else {
+          // Reverse Mode
+          totalAmount = parseFormattedNumber(finalAmountInput.value);
+          if (isNaN(totalAmount) || totalAmount <= principal) {
+            showAlert(dict.errFinalAmount);
+            return;
+          }
+
+          interest = totalAmount - principal;
+          // Solve: interest = principal * (rate/100) * totalMonths
+          rate = (interest / (principal * totalMonths)) * 100;
+        }
+
+        // Show premium loader
+        calculatorLoader.classList.remove('hidden');
+        calculatorLoader.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        setTimeout(() => {
+          calculatorLoader.classList.add('hidden');
+
+          const monthlyInterest = principal * (rate / 100);
+          const yearlyInterest = monthlyInterest * 12;
+          const dailyInterest = monthlyInterest / 30;
+          
+          // Net Profit after charges
+          const netProfit = interest - processingFee - extraCharges;
+
+          const timestamp = formatDateTime(new Date());
+
+          calculatedResults = {
+            principal,
+            rate,
+            time,
+            timeUnit,
+            totalMonths,
+            interest,
+            totalAmount,
+            monthlyInterest,
+            yearlyInterest,
+            dailyInterest,
+            processingFee,
+            extraCharges,
+            netProfit,
+            timestamp,
+            mode: currentMode
+          };
+
+          // Render Outputs (Exactly ordered)
+          resTotalAmount.textContent = formatCurrency(totalAmount);
+          resTotalInterest.textContent = formatCurrency(interest);
+          
+          resPrincipalAmount.textContent = formatCurrency(principal);
+          
+          const labelTime = time === 1 
+            ? (timeUnit === 'years' ? '1 Year' : '1 Month') 
+            : `${time} ${timeUnit === 'years' ? 'Years' : 'Months'}`;
+          resTimeDurationLabel.textContent = `${labelTime} (${totalMonths.toFixed(1)} Months)`;
+          
+          resInterestRateLabel.textContent = `₹${rate.toFixed(2)} per ₹100 per month`;
+          resEffectiveRateLabel.textContent = `${rate.toFixed(2)}% Monthly (${(rate * 12).toFixed(2)}% P.A.)`;
+          resCalculationTime.textContent = timestamp;
+          receiptHeaderDate.textContent = timestamp;
+
+          resMonthlyInterest.textContent = formatCurrency(monthlyInterest);
+          resYearlyInterest.textContent = formatCurrency(yearlyInterest);
+          resDailyInterest.textContent = formatCurrency(dailyInterest);
+
+          // Processing fees overlays
+          if (processingFee > 0) {
+            resFeeRow.classList.remove('hidden');
+            resFeeValue.textContent = formatCurrency(processingFee);
+          } else {
+            resFeeRow.classList.add('hidden');
+          }
+
+          if (extraCharges > 0) {
+            resChargesRow.classList.remove('hidden');
+            resChargesValue.textContent = formatCurrency(extraCharges);
+          } else {
+            resChargesRow.classList.add('hidden');
+          }
+
+          if (processingFee > 0 || extraCharges > 0) {
+            resNetProfitRow.classList.remove('hidden');
+            resNetProfitValue.textContent = formatCurrency(netProfit);
+            
+            // Highlight negative net profits in red if applicable
+            if (netProfit < 0) {
+              resNetProfitValue.classList.remove('green-highlight');
+              resNetProfitValue.style.color = 'var(--danger-red)';
+            } else {
+              resNetProfitValue.classList.add('green-highlight');
+              resNetProfitValue.style.color = '';
+            }
+          } else {
+            resNetProfitRow.classList.add('hidden');
+          }
+
+          resultsSection.classList.remove('hidden');
+          resultsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+          saveToHistory(calculatedResults);
+        }, 1200); // 1.2s spinner ring loader
+      };
+
+      calculatorForm.addEventListener('submit', handleFormSubmit);
+
+      // Reset Form fields
+      const handleClearInputs = () => {
+        calculatorForm.reset();
+        selectRateChip(chipCustom);
+        interestRateInput.removeAttribute('readonly');
+        interestRateInput.value = '';
+        
+        handleAmountInput();
+        handleFinalAmountInput();
+        handleRateInput();
+        hideAlert();
+        resultsSection.classList.add('hidden');
+        calculatedResults = null;
+        
+        showToast(translations[currentLanguage].resetToast);
+      };
+      clearInputsBtn.addEventListener('click', handleClearInputs);
+
+      // LocalStorage History
+      window.renderHistory = () => {
+        if (historyData.length === 0) {
+          historyEmpty.classList.remove('hidden');
+          historyList.classList.add('hidden');
+          return;
+        }
+
+        historyEmpty.classList.add('hidden');
+        historyList.classList.remove('hidden');
+        historyList.innerHTML = '';
+
+        const dict = translations[currentLanguage];
+
+        historyData.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'history-item';
+          
+          const labelTime = item.time === 1 
+            ? (item.timeUnit === 'years' ? '1 Year' : '1 Month') 
+            : `${item.time} ${item.timeUnit === 'years' ? 'Years' : 'Months'}`;
+
+          card.innerHTML = `
+            <div class="history-item-top">
+              <span class="history-amount">${formatCurrency(item.principal)}</span>
+              <span class="history-date">${item.timestamp}</span>
+            </div>
+            <div class="history-item-details">
+              <span>Rate: <strong>${item.rate.toFixed(2)}%</strong></span>
+              <span>Time: <strong>${labelTime}</strong></span>
+              <span>Mode: <strong>${item.mode === 'reverse' ? 'Reverse' : 'Normal'}</strong></span>
+            </div>
+            <div class="history-item-bottom">
+              <div class="history-profit">
+                Int: <span class="res-val">${formatCurrency(item.interest)}</span> | Total: <span class="res-val">${formatCurrency(item.totalAmount)}</span>
+              </div>
+              <div class="history-item-actions">
+                <button class="btn-history-restore">Restore</button>
+                <button class="btn-item-delete" aria-label="Delete calculation item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                </button>
+              </div>
+            </div>
+          `;
+
+          // Restore calculation triggers
+          const restoreAction = () => {
+            toggleMode(item.mode);
+            
+            loanAmountInput.value = item.principal;
+            timeDurationInput.value = item.time;
+            timeUnitSelect.value = item.timeUnit;
+            
+            if (item.processingFee > 0) processingFeeInput.value = item.processingFee;
+            if (item.extraCharges > 0) extraChargesInput.value = item.extraCharges;
+
+            if (item.mode === 'normal') {
+              interestRateInput.value = item.rate;
+              // Sync preset chips
+              let matchedChip = null;
+              rateChips.forEach(chip => {
+                const val = chip.getAttribute('data-rate');
+                if (parseFloat(val) === item.rate) {
+                  matchedChip = chip;
+                }
+              });
+
+              if (matchedChip) {
+                selectRateChip(matchedChip);
+              } else {
+                selectRateChip(chipCustom);
+                interestRateInput.value = item.rate;
+              }
+            } else {
+              finalAmountInput.value = item.totalAmount;
+            }
+
+            // Sync dynamic preview labels
+            const formatType = currenciesConfig[currentCurrency].formatType;
+            [loanAmountInput, finalAmountInput, processingFeeInput, extraChargesInput].forEach(el => {
+              if (el) el.dispatchEvent(new Event('input'));
+            });
+            
+            handleAmountInput();
+            handleFinalAmountInput();
+            handleRateInput();
+
+            // Simulate calculation submit trigger
+            const submitEvent = new Event('submit');
+            calculatorForm.dispatchEvent(submitEvent);
+            
+            showToast(dict.restoreToast);
+          };
+
+          card.addEventListener('click', restoreAction);
+          card.querySelector('.btn-history-restore').addEventListener('click', (e) => {
+            e.stopPropagation();
+            restoreAction();
+          });
+          card.querySelector('.btn-item-delete').addEventListener('click', (e) => {
+            e.stopPropagation();
+            deleteHistoryItem(item.id);
+          });
+
+          historyList.appendChild(card);
+        });
+      };
+
+      const loadHistoryData = () => {
+        try {
+          const stored = localStorage.getItem('navron_si_history');
+          historyData = stored ? JSON.parse(stored) : [];
+        } catch (e) {
+          historyData = [];
+        }
+        renderHistory();
+      };
+
+      const saveToHistory = (result) => {
+        const historyItem = {
+          id: Date.now().toString(),
+          principal: result.principal,
+          rate: result.rate,
+          time: result.time,
+          timeUnit: result.timeUnit,
+          interest: result.interest,
+          totalAmount: result.totalAmount,
+          processingFee: result.processingFee,
+          extraCharges: result.extraCharges,
+          timestamp: result.timestamp,
+          mode: result.mode
+        };
+
+        historyData.unshift(historyItem);
+        if (historyData.length > 10) {
+          historyData = historyData.slice(0, 10);
+        }
+
+        localStorage.setItem('navron_si_history', JSON.stringify(historyData));
+        renderHistory();
+      };
+
+      const deleteHistoryItem = (id) => {
+        historyData = historyData.filter(item => item.id !== id);
+        localStorage.setItem('navron_si_history', JSON.stringify(historyData));
+        renderHistory();
+      };
+
+      clearHistoryBtn.addEventListener('click', () => {
+        const dict = translations[currentLanguage];
+        if (confirm(dict.historyConfirm)) {
+          historyData = [];
+          localStorage.removeItem('navron_si_history');
+          renderHistory();
+          showToast(dict.historyCleared);
+        }
+      });
+
+      loadHistoryData();
+
+      // Ext Exporters triggers
+      const showToast = (message) => {
+        toastMessage.textContent = message;
+        toastBanner.classList.add('show');
+        toastBanner.classList.remove('hidden');
+
+        setTimeout(() => {
+          toastBanner.classList.remove('show');
+          setTimeout(() => toastBanner.classList.add('hidden'), 300);
+        }, 2500);
+      };
+
+      const buildShareableText = () => {
+        if (!calculatedResults) return '';
+
+        const labelTime = calculatedResults.time === 1
+          ? (calculatedResults.timeUnit === 'years' ? '1 Year' : '1 Month')
+          : `${calculatedResults.time} ${calculatedResults.timeUnit}`;
+
+        return `📊 NAVRON SMART INTEREST STATEMENT
+-----------------------------------------
+💰 Principal Amount: ${formatCurrency(calculatedResults.principal)}
+📈 Interest Rate: ₹${calculatedResults.rate.toFixed(2)} per month (${calculatedResults.rate.toFixed(2)}%)
+⏱️ Time Duration: ${labelTime} (${calculatedResults.totalMonths.toFixed(1)} Months)
+
+🔥 Total Interest (Profit): ${formatCurrency(calculatedResults.interest)}
+💵 Total Amount to Receive: ${formatCurrency(calculatedResults.totalAmount)}
+
+⚙️ Fee & Charges Paid:
+• Processing Fee: ${formatCurrency(calculatedResults.processingFee)}
+• Extra Charges: ${formatCurrency(calculatedResults.extraCharges)}
+💸 Net Profit after Fees: ${formatCurrency(calculatedResults.netProfit)}
+🎯 Effective Rate: ${calculatedResults.rate.toFixed(2)}% Monthly
+
+📅 Breakdown Details:
+• Monthly Interest: ${formatCurrency(calculatedResults.monthlyInterest)}
+• Yearly Interest: ${formatCurrency(calculatedResults.yearlyInterest)}
+• Daily Interest: ${formatCurrency(calculatedResults.dailyInterest)}
+-----------------------------------------
+📅 Date & Time: ${calculatedResults.timestamp}
+Calculated with Navron Calculator Suite.`;
+      };
+
+      // Copy action
+      copyBtn.addEventListener('click', () => {
+        const text = buildShareableText();
+        if (!text) return;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text)
+            .then(() => showToast(translations[currentLanguage].copiedToast))
+            .catch(() => showToast('Failed to copy.'));
+        } else {
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            document.execCommand('copy');
+            showToast(translations[currentLanguage].copiedToast);
+          } catch (err) {
+            showToast('Failed to copy.');
+          }
+          document.body.removeChild(textarea);
+        }
+      });
+
+      // PDF Exporter
+      pdfBtn.addEventListener('click', () => {
+        if (!calculatedResults) return;
+        const dict = translations[currentLanguage];
+        showToast(dict.pdfStart);
+        
+        printableResultContainer.classList.add('pdf-rendering');
+
+        const { jsPDF } = window.jspdf;
+        
+        html2canvas(printableResultContainer, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: document.body.classList.contains('dark-mode') ? '#1f2937' : '#ffffff'
+        }).then(canvas => {
+          printableResultContainer.classList.remove('pdf-rendering');
+          
+          const imgData = canvas.toDataURL('image/png');
+          const pdf = new jsPDF('p', 'mm', 'a4');
+          
+          const imgWidth = 190;
+          const imgHeight = (canvas.height * imgWidth) / canvas.width;
+          
+          pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+          pdf.save(`Navron_Interest_Statement_${Date.now()}.pdf`);
+          showToast(dict.pdfSuccess);
+        }).catch(err => {
+          printableResultContainer.classList.remove('pdf-rendering');
+          showToast(dict.pdfFail);
+        });
+      });
+
+      // PNG Exporter
+      pngBtn.addEventListener('click', () => {
+        if (!calculatedResults) return;
+        const dict = translations[currentLanguage];
+        showToast(dict.pngStart);
+
+        html2canvas(printableResultContainer, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: document.body.classList.contains('dark-mode') ? '#1f2937' : '#ffffff'
+        }).then(canvas => {
+          const link = document.createElement('a');
+          link.download = `Navron_Interest_Result_${Date.now()}.png`;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          showToast(dict.pngSuccess);
+        }).catch(err => {
+          showToast('Rendering failed.');
+        });
+      });
+
+      // Print action
+      printBtn.addEventListener('click', () => {
+        window.print();
+      });
+
+      // Reset form
+      resetBtn.addEventListener('click', () => {
+        handleClearInputs();
+      });
+    });
+  </script>
+</body>
+</html>
+
+

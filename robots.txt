@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /scratch/
+Disallow: /bin/
+
+Sitemap: https://navroncalculator.com/sitemap.xml

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage Calculator - Navron Suite</title>
+  <meta name="description" content="Calculate percentages, percentage increases, and percentage decreases quickly. Coming soon to Navron Calculator Suite.">
+  <link rel="canonical" href="https://navroncalculator.com/percentage-calculator.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M12 2L2 7L12 12L22 7L12 2Z' fill='%232563EB'/%3E%3Cpath d='M2 17L12 22L22 17' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M2 12L12 17L22 12' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+  <div class="app-container">
+    <header class="app-header">
+      <a href="index.html" class="brand">
+        <div class="logo-container">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#logo-grad)" /><path d="M2 17L12 22L22 17" stroke="url(#logo-grad)" stroke-width="2" stroke-linecap="round"/><path d="M2 12L12 17L22 12" stroke="url(#logo-grad)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="logo-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB" /><stop offset="1" stop-color="#3B82F6" /></linearGradient></defs></svg>
+        </div>
+        <div class="title-meta"><h1 data-translate="suiteTitle">Navron Suite</h1><p class="subtitle" data-translate="suiteSubtitle">Smart Calculators</p></div>
+      </a>
+      <div class="header-controls">
+        <button id="lang-toggle" class="lang-toggle-btn">हिन्दी</button>
+        <div class="currency-selector-wrapper">
+          <select id="currency-dropdown" class="currency-dropdown-select">
+            <option value="INR">₹ INR</option><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="AED">د.इ AED</option><option value="SAR">﷼ SAR</option>
+          </select>
+          <div class="currency-dropdown-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></div>
+        </div>
+        <button id="theme-toggle" class="theme-toggle-btn"><span class="sun-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></span><span class="moon-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span></button>
+      </div>
+    </header>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html" data-translate="breadcrumbsHome">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></nav>
+      <span>Percentage Calculator</span>
+    </nav>
+    <main class="app-main">
+      <section class="coming-soon-card glass-card">
+        <div class="coming-soon-glow"></div>
+        <div class="coming-soon-content">
+          <div class="coming-soon-icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/><line x1="19" x2="5" y1="5" y2="19"/></svg>
+          </div>
+          <h2>Percentage Calculator</h2>
+          <div class="badge-coming-soon" data-translate="comingSoonTitle">Coming Soon</div>
+          <p class="cs-message" data-translate="comingSoonMessage">This calculator is currently under development and will be available in a future update. Stay tuned for more powerful tools in Navron Suite.</p>
+          <a href="index.html" class="btn-back-home btn-primary" style="text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg><span data-translate="btnBackDashboard">Back to Dashboard</span></a>
+        </div>
+      </section>
+    </main>
+    <footer class="app-footer">
+      <nav class="footer-nav"><a href="about.html" class="footer-link" data-translate="footAbout">About Us</a><a href="contact.html" class="footer-link" data-translate="footContact">Contact</a><a href="privacy.html" class="footer-link" data-translate="footPrivacy">Privacy Policy</a><a href="terms.html" class="footer-link" data-translate="footTerms">Terms of Service</a></nav>
+      <p class="footer-copyright" data-translate="footBranding">© 2026 Navron Suite. Built Offline & Installable.</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

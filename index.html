@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Optimization -->
+  <title>Navron Calculator - Smart Calculator Suite</title>
+  <meta name="description" content="Navron Calculator is a premium, offline-ready multi-calculator suite. Calculate Interest, EMI, GST, SIP, and Tax with responsive glassmorphism design.">
+  <meta name="keywords" content="interest calculator, EMI calculator, GST calculator, SIP calculator, tax calculator, finance suite, offline PWA, glassmorphism calculator">
+  <meta name="author" content="Navron Smart Tools">
+  <link rel="canonical" href="https://navroncalculator.com/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://navroncalculator.com/">
+  <meta property="og:title" content="Navron Calculator - Smart Calculator Suite">
+  <meta property="og:description" content="Premium multi-calculator suite with responsive glassmorphism UI. Works offline, calculates simple interest, EMI, GST, tax, and investments instantly.">
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M12 2L2 7L12 12L22 7L12 2Z' fill='%232563EB'/%3E%3Cpath d='M2 17L12 22L22 17' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M2 12L12 17L22 12' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <!-- Twitter Card -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://navroncalculator.com/">
+  <meta property="twitter:title" content="Navron Calculator - Smart Calculator Suite">
+  <meta property="twitter:description" content="Premium multi-calculator suite with responsive glassmorphism UI. Works offline, calculates simple interest, EMI, GST, tax, and investments instantly.">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Navron Calculator Suite",
+    "url": "https://navroncalculator.com/",
+    "description": "Smart, modern offline multi-calculator suite with responsive glassmorphism UI. Calculate Interest, EMI, GST, SIP, and Tax with ease.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5."
+  }
+  </script>
+
+  <!-- PWA & Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M12 2L2 7L12 12L22 7L12 2Z' fill='%232563EB'/%3E%3Cpath d='M2 17L12 22L22 17' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M2 12L12 17L22 12' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563EB">
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+  <!-- Dynamic Orbs background -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <a href="index.html" class="brand" aria-label="Navron Suite Home">
+        <div class="logo-container">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#logo-grad)" />
+            <path d="M2 17L12 22L22 17" stroke="url(#logo-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="url(#logo-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#2563EB" />
+                <stop offset="1" stop-color="#3B82F6" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="title-meta">
+          <h1 data-translate="suiteTitle">Navron Suite</h1>
+          <p class="subtitle" data-translate="suiteSubtitle">Smart Calculators</p>
+        </div>
+      </a>
+      
+      <div class="header-controls">
+        <!-- Language Switcher -->
+        <button id="lang-toggle" class="lang-toggle-btn" aria-label="Switch Language">हिन्दी</button>
+
+        <!-- Currency Selector -->
+        <div class="currency-selector-wrapper">
+          <select id="currency-dropdown" class="currency-dropdown-select" aria-label="Select Currency">
+            <option value="INR">₹ INR</option>
+            <option value="USD">$ USD</option>
+            <option value="EUR">€ EUR</option>
+            <option value="GBP">£ GBP</option>
+            <option value="AED">د.إ AED</option>
+            <option value="SAR">﷼ SAR</option>
+          </select>
+          <div class="currency-dropdown-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <span class="sun-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          </span>
+          <span class="moon-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <span data-translate="breadcrumbsHome">Home</span>
+    </nav>
+
+    <main class="app-main">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <h2 data-translate="metaTitle">Navron Calculator</h2>
+        <h3 data-translate="metaSubtitle">Smart Calculator Suite</h3>
+        <p data-translate="metaSubtitle">All Essential Calculators in One Place</p>
+      </section>
+
+      <!-- Search & Filters Container -->
+      <section class="search-filter-container glass-card">
+        <div class="search-bar-wrapper">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="calculator-search" placeholder="Search calculators..." autocomplete="off">
+          <button id="search-clear-btn" class="search-clear-btn hidden" aria-label="Clear Search">&times;</button>
+        </div>
+        
+        <div class="filter-categories-wrapper">
+          <div class="filter-scroll">
+            <button class="filter-btn active" data-category="all" data-translate="catAll">All</button>
+            <button class="filter-btn" data-category="finance" data-translate="catFinance">Finance</button>
+            <button class="filter-btn" data-category="business" data-translate="catBusiness">Business</button>
+            <button class="filter-btn" data-category="tax" data-translate="catTax">Tax</button>
+            <button class="filter-btn" data-category="investment" data-translate="catInvestment">Investment</button>
+            <button class="filter-btn" data-category="daily" data-translate="catDaily">Daily Use</button>
+            <button class="filter-btn" data-category="utility" data-translate="catUtility">Utility</button>
+          </div>
+          <button id="clear-filters-btn" class="btn-clear-filters hidden" data-translate="clearFilters">Clear Filters</button>
+        </div>
+      </section>
+
+      <!-- Recently Used Section -->
+      <section id="recent-calculators-section" class="hidden">
+        <h3 class="section-headline" data-translate="recentCalcs">Recently Used</h3>
+        <div class="calculators-grid" id="recent-calculators-grid">
+          <!-- JS dynamic Injection -->
+        </div>
+      </section>
+
+      <!-- Primary Grid of All 14 Calculators -->
+      <section>
+        <h3 class="section-headline" data-translate="featuredCalcs">Featured Calculators</h3>
+        <div class="calculators-grid" id="main-calculators-grid">
+          <!-- JS Dynamic Injection -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <nav class="footer-nav" aria-label="Footer Navigation">
+        <a href="about.html" class="footer-link" data-translate="footAbout">About Us</a>
+        <a href="contact.html" class="footer-link" data-translate="footContact">Contact</a>
+        <a href="privacy.html" class="footer-link" data-translate="footPrivacy">Privacy Policy</a>
+        <a href="terms.html" class="footer-link" data-translate="footTerms">Terms of Service</a>
+      </nav>
+      <p class="footer-copyright" data-translate="footBranding">© 2026 Navron Suite. Built Offline & Installable.</p>
+    </footer>
+  </div>
+
+  <!-- Shared JavaScript and Portal Loader -->
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Localized properties for home portal
+      const calculators = [
+        { id: 'interest', name: 'Interest Calculator', icon: 'interest', categories: ['finance', 'investment', 'daily'], active: true, url: 'interest-calculator.html' },
+        { id: 'emi', name: 'EMI Calculator', icon: 'emi', categories: ['finance', 'daily'], active: false, url: 'emi-calculator.html' },
+        { id: 'gst', name: 'GST Calculator', icon: 'gst', categories: ['tax', 'business'], active: false, url: 'gst-calculator.html' },
+        { id: 'percentage', name: 'Percentage Calculator', icon: 'percentage', categories: ['daily', 'utility'], active: false, url: 'percentage-calculator.html' },
+        { id: 'profitloss', name: 'Profit & Loss Calculator', icon: 'profitloss', categories: ['business', 'daily'], active: false, url: 'profit-loss-calculator.html' },
+        { id: 'sip', name: 'SIP Calculator', icon: 'sip', categories: ['investment', 'finance'], active: false, url: 'sip-calculator.html' },
+        { id: 'fd', name: 'FD Calculator', icon: 'fd', categories: ['investment', 'finance'], active: false, url: 'fd-calculator.html' },
+        { id: 'rd', name: 'RD Calculator', icon: 'rd', categories: ['investment', 'finance'], active: false, url: 'rd-calculator.html' },
+        { id: 'discount', name: 'Discount Calculator', icon: 'discount', categories: ['daily', 'utility'], active: false, url: 'discount-calculator.html' },
+        { id: 'age', name: 'Age Calculator', icon: 'age', categories: ['daily', 'utility'], active: false, url: 'age-calculator.html' },
+        { id: 'currency', name: 'Currency Calculator', icon: 'currency', categories: ['utility', 'finance'], active: false, url: 'currency-calculator.html' },
+        { id: 'unit', name: 'Unit Converter', icon: 'unit', categories: ['utility', 'daily'], active: false, url: 'unit-converter.html' },
+        { id: 'loan', name: 'Loan Calculator', icon: 'loan', categories: ['finance', 'daily'], active: false, url: 'loan-calculator.html' },
+        { id: 'tax', name: 'Tax Calculator', icon: 'tax', categories: ['tax', 'business', 'finance'], active: false, url: 'tax-calculator.html' }
+      ];
+
+      const searchInput = document.getElementById('calculator-search');
+      const searchClearBtn = document.getElementById('search-clear-btn');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const clearFiltersBtn = document.getElementById('clear-filters-btn');
+      const mainGrid = document.getElementById('main-calculators-grid');
+      
+      let activeCategory = 'all';
+
+      // Load icons from global shared dictionary
+      const renderGrid = (gridEl, itemsList) => {
+        gridEl.innerHTML = '';
+        itemsList.forEach(item => {
+          const card = document.createElement('a');
+          card.href = item.url;
+          card.className = 'calc-card-tile glass-card';
+          card.setAttribute('data-id', item.id);
+          
+          const svgIcon = calculatorIcons[item.icon] || '';
+          const badgeClass = item.active ? 'badge-active' : 'badge-soon';
+          const badgeText = item.active ? 'Active' : 'Soon';
+
+          card.innerHTML = `
+            <div class="tile-icon-box ${item.active ? 'tile-active' : ''}">
+              ${svgIcon}
+            </div>
+            <div class="tile-meta-data">
+              <span class="tile-title">${item.name}</span>
+              <span class="tile-badge ${badgeClass}">${badgeText}</span>
+            </div>
+          `;
+          
+          gridEl.appendChild(card);
+        });
+      };
+
+      // Handle search and filtering
+      const filterGrid = () => {
+        const query = searchInput.value.toLowerCase().trim();
+        const cards = mainGrid.querySelectorAll('.calc-card-tile');
+        
+        cards.forEach((card, idx) => {
+          const item = calculators[idx];
+          const matchesSearch = item.name.toLowerCase().includes(query);
+          const matchesCategory = activeCategory === 'all' || item.categories.includes(activeCategory);
+
+          if (matchesSearch && matchesCategory) {
+            card.classList.remove('hidden-by-filter');
+          } else {
+            card.classList.add('hidden-by-filter');
+          }
+        });
+
+        // Show/hide clear search trigger
+        if (query.length > 0) {
+          searchClearBtn.classList.remove('hidden');
+        } else {
+          searchClearBtn.classList.add('hidden');
+        }
+
+        // Show/hide clear filters button
+        if (query.length > 0 || activeCategory !== 'all') {
+          clearFiltersBtn.classList.remove('hidden');
+        } else {
+          clearFiltersBtn.classList.add('hidden');
+        }
+      };
+
+      // Attach search listeners
+      searchInput.addEventListener('input', filterGrid);
+      searchClearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        filterGrid();
+        searchInput.focus();
+      });
+
+      // Filter category pills listener
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeCategory = btn.getAttribute('data-category');
+          filterGrid();
+        });
+      });
+
+      // Reset filters action
+      clearFiltersBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        activeCategory = 'all';
+        filterBtns.forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-category="all"]').classList.add('active');
+        filterGrid();
+      });
+
+      // Render Recently Used grid
+      const renderRecents = () => {
+        const recentSec = document.getElementById('recent-calculators-section');
+        const recentGrid = document.getElementById('recent-calculators-grid');
+        
+        let recents = localStorage.getItem('navron_recent_calculators');
+        recents = recents ? JSON.parse(recents) : [];
+
+        if (recents.length === 0) {
+          recentSec.classList.add('hidden');
+          return;
+        }
+
+        recentSec.classList.remove('hidden');
+        
+        // Enrich items with icons from database
+        const enrichedRecents = recents.map(item => {
+          const orig = calculators.find(c => c.id === item.id);
+          return {
+            id: item.id,
+            name: item.name,
+            icon: orig ? orig.icon : 'interest',
+            active: orig ? orig.active : true,
+            url: item.url
+          };
+        });
+
+        renderGrid(recentGrid, enrichedRecents);
+      };
+
+      // Draw initial components
+      renderGrid(mainGrid, calculators);
+      renderRecents();
+    });
+  </script>
+</body>
+</html>
