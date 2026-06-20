@@ -1,4 +1,4 @@
-﻿/* 
+/* 
 ========================================================================
    NAVRON CALCULATOR SUITE - CORE JAVASCRIPT LOGIC (V3)
    Multi-page Portability, English Dictionary, Live Cursor Commas, PWA Register
@@ -317,6 +317,63 @@ if ('serviceWorker' in navigator) {
         // Silent error catch
       });
   });
+}
+
+// Global utility to convert numbers into Indian numbering system words
+function getIndianNumberWords(num) {
+  if (isNaN(num) || num <= 0) return '';
+  num = Math.floor(num);
+  if (num === 0) return 'Zero';
+
+  const units = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 
+                 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+  const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+  function convertLessThanThousand(n) {
+    if (n === 0) return '';
+    if (n < 20) return units[n] + ' ';
+    const t = Math.floor(n / 10);
+    const u = n % 10;
+    if (n < 100) return tens[t] + ' ' + units[u] + ' ';
+    return units[Math.floor(n / 100)] + ' Hundred ' + convertLessThanThousand(n % 100);
+  }
+
+  let words = '';
+  const crore = Math.floor(num / 10000000);
+  num %= 10000000;
+  const lakh = Math.floor(num / 100000);
+  num %= 100000;
+  const thousand = Math.floor(num / 1000);
+  num %= 1000;
+
+  if (crore > 0) {
+    words += convertLessThanThousand(crore) + 'Crore ';
+  }
+  if (lakh > 0) {
+    words += convertLessThanThousand(lakh) + 'Lakh ';
+  }
+  if (thousand > 0) {
+    words += convertLessThanThousand(thousand) + 'Thousand ';
+  }
+  if (num > 0) {
+    words += convertLessThanThousand(num);
+  }
+
+  return words.trim() + ' Only';
+}
+
+// Global utility to format date and time with Indian locale formatting
+function formatDateTime(date) {
+  if (!(date instanceof Date) || isNaN(date.getTime())) return '';
+  const options = { 
+    day: '2-digit', 
+    month: 'short', 
+    year: 'numeric', 
+    hour: '2-digit', 
+    minute: '2-digit', 
+    hour12: true 
+  };
+  return date.toLocaleString('en-IN', options);
 }
 
 

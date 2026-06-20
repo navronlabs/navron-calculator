@@ -74,6 +74,12 @@ body.dark-mode {
   -webkit-tap-highlight-color: transparent;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
 body {
   background: var(--bg-gradient);
   color: var(--text-main);
@@ -82,8 +88,6 @@ body {
   justify-content: center;
   align-items: flex-start;
   padding: 24px 12px;
-  position: relative;
-  overflow-x: hidden;
   transition: background var(--transition-normal), color var(--transition-normal);
 }
 
@@ -402,6 +406,8 @@ body.dark-mode .moon-icon { display: block; }
   padding: 4px 2px;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  scroll-behavior: smooth;
   flex: 1;
   min-width: 0;
 }
@@ -1076,6 +1082,12 @@ body.dark-mode .moon-icon { display: block; }
 .list-item-row .item-label { font-weight: 600; }
 .list-item-row .item-value { font-weight: 700; color: var(--text-main); }
 
+#calculation-details-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 /* Order 8-10: Breakdown mini grid cards */
 .results-grid {
   display: grid;
@@ -1550,13 +1562,17 @@ body.dark-mode .moon-icon { display: block; }
   .hero-section h3 { font-size: 1.05rem; }
 
   .filter-categories-wrapper {
-    align-items: stretch;
-    overflow: hidden;
+    align-items: center;
+    overflow: visible;
   }
 
   .filter-scroll {
     width: 100%;
     flex: 1 1 auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    scroll-behavior: smooth;
   }
 
   .calculators-grid {

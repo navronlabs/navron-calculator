@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -255,66 +255,69 @@
           </div>
         </div>
 
-        <!-- 3-7. Parameters list Details Card -->
-        <div class="result-card glass-card details-list-card animated-card">
-          <!-- 3. Principal Amount -->
-          <div class="list-item-row">
-            <span class="item-label" data-translate="cardPrincipal">Principal Amount</span>
-            <span class="item-value green-highlight" id="res-principal-amount">₹0</span>
+        <!-- Calculation Details Group -->
+        <div id="calculation-details-group" class="hidden">
+          <!-- 3-7. Parameters list Details Card -->
+          <div class="result-card glass-card details-list-card animated-card">
+            <!-- 3. Principal Amount -->
+            <div class="list-item-row">
+              <span class="item-label" data-translate="cardPrincipal">Principal Amount</span>
+              <span class="item-value green-highlight" id="res-principal-amount">₹0</span>
+            </div>
+            <!-- 4. Time Duration -->
+            <div class="list-item-row">
+              <span class="item-label" data-translate="cardDuration">Time Duration</span>
+              <span class="item-value" id="res-time-duration-label">--</span>
+            </div>
+            <!-- 5. Interest Rate -->
+            <div class="list-item-row">
+              <span class="item-label" data-translate="cardRate">Interest Rate</span>
+              <span class="item-value" id="res-interest-rate-label">--</span>
+            </div>
+            <!-- 6. Effective Monthly Rate -->
+            <div class="list-item-row">
+              <span class="item-label" data-translate="cardEffectiveRate">Effective Monthly Rate</span>
+              <span class="item-value" id="res-effective-rate-label">--</span>
+            </div>
+            <!-- 7. Calculation Date & Time -->
+            <div class="list-item-row">
+              <span class="item-label" data-translate="cardCalculationTime">Calculation Date & Time</span>
+              <span class="item-value" id="res-calculation-time">--</span>
+            </div>
+            <!-- Optional Processing Fee Paid Row -->
+            <div class="list-item-row hidden" id="res-fee-row">
+              <span class="item-label" data-translate="cardProcessingFee">Processing Fee Paid</span>
+              <span class="item-value" id="res-fee-value">₹0</span>
+            </div>
+            <!-- Optional Extra Charges Paid Row -->
+            <div class="list-item-row hidden" id="res-charges-row">
+              <span class="item-label" data-translate="cardExtraCharges">Extra Charges Paid</span>
+              <span class="item-value" id="res-charges-value">₹0</span>
+            </div>
+            <!-- Optional Net Profit Row -->
+            <div class="list-item-row hidden" id="res-net-profit-row">
+              <span class="item-label" data-translate="cardNetProfit">Net Profit (After Charges)</span>
+              <span class="item-value green-highlight" id="res-net-profit-value">₹0</span>
+            </div>
           </div>
-          <!-- 4. Time Duration -->
-          <div class="list-item-row">
-            <span class="item-label" data-translate="cardDuration">Time Duration</span>
-            <span class="item-value" id="res-time-duration-label">--</span>
-          </div>
-          <!-- 5. Interest Rate -->
-          <div class="list-item-row">
-            <span class="item-label" data-translate="cardRate">Interest Rate</span>
-            <span class="item-value" id="res-interest-rate-label">--</span>
-          </div>
-          <!-- 6. Effective Monthly Rate -->
-          <div class="list-item-row">
-            <span class="item-label" data-translate="cardEffectiveRate">Effective Monthly Rate</span>
-            <span class="item-value" id="res-effective-rate-label">--</span>
-          </div>
-          <!-- 7. Calculation Date & Time -->
-          <div class="list-item-row">
-            <span class="item-label" data-translate="cardCalculationTime">Calculation Date & Time</span>
-            <span class="item-value" id="res-calculation-time">--</span>
-          </div>
-          <!-- Optional Processing Fee Paid Row -->
-          <div class="list-item-row hidden" id="res-fee-row">
-            <span class="item-label" data-translate="cardProcessingFee">Processing Fee Paid</span>
-            <span class="item-value" id="res-fee-value">₹0</span>
-          </div>
-          <!-- Optional Extra Charges Paid Row -->
-          <div class="list-item-row hidden" id="res-charges-row">
-            <span class="item-label" data-translate="cardExtraCharges">Extra Charges Paid</span>
-            <span class="item-value" id="res-charges-value">₹0</span>
-          </div>
-          <!-- Optional Net Profit Row -->
-          <div class="list-item-row hidden" id="res-net-profit-row">
-            <span class="item-label" data-translate="cardNetProfit">Net Profit (After Charges)</span>
-            <span class="item-value green-highlight" id="res-net-profit-value">₹0</span>
-          </div>
-        </div>
 
-        <!-- 8-10. Breakdown mini cards grid -->
-        <div class="results-grid">
-          <!-- 8. Monthly Interest -->
-          <div class="result-card glass-card breakdown-card animated-card">
-            <span class="card-title" data-translate="cardMonthlyInterest">Monthly Interest</span>
-            <span class="card-value green-highlight" id="res-monthly-interest">₹0</span>
-          </div>
-          <!-- 9. Yearly Interest -->
-          <div class="result-card glass-card breakdown-card animated-card">
-            <span class="card-title" data-translate="cardYearlyInterest">Yearly Interest</span>
-            <span class="card-value green-highlight" id="res-yearly-interest">₹0</span>
-          </div>
-          <!-- 10. Daily Interest -->
-          <div class="result-card glass-card breakdown-card animated-card">
-            <span class="card-title" data-translate="cardDailyInterest">Daily Interest</span>
-            <span class="card-value green-highlight" id="res-daily-interest">₹0</span>
+          <!-- 8-10. Breakdown mini cards grid -->
+          <div class="results-grid">
+            <!-- 8. Monthly Interest -->
+            <div class="result-card glass-card breakdown-card animated-card">
+              <span class="card-title" data-translate="cardMonthlyInterest">Monthly Interest</span>
+              <span class="card-value green-highlight" id="res-monthly-interest">₹0</span>
+            </div>
+            <!-- 9. Yearly Interest -->
+            <div class="result-card glass-card breakdown-card animated-card">
+              <span class="card-title" data-translate="cardYearlyInterest">Yearly Interest</span>
+              <span class="card-value green-highlight" id="res-yearly-interest">₹0</span>
+            </div>
+            <!-- 10. Daily Interest -->
+            <div class="result-card glass-card breakdown-card animated-card">
+              <span class="card-title" data-translate="cardDailyInterest">Daily Interest</span>
+              <span class="card-value green-highlight" id="res-daily-interest">₹0</span>
+            </div>
           </div>
         </div>
       </div>
@@ -401,6 +404,7 @@
     };
 
     document.addEventListener('DOMContentLoaded', () => {
+      const calculatorForm = document.getElementById('calculator-form');
       const modeNormalBtn = document.getElementById('mode-normal-btn');
       const modeReverseBtn = document.getElementById('mode-reverse-btn');
       const normalInputsContainer = document.getElementById('normal-inputs-container');
@@ -592,6 +596,10 @@
         e.preventDefault();
         hideAlert();
         resultsSection.classList.add('hidden');
+        const detailsGroup = document.getElementById('calculation-details-group');
+        if (detailsGroup) {
+          detailsGroup.classList.add('hidden');
+        }
 
         const principal = parseFormattedNumber(loanAmountInput.value);
         const time = parseFloat(timeDurationInput.value);
@@ -729,6 +737,12 @@
           resultsSection.classList.remove('hidden');
           resultsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
+          setTimeout(() => {
+            if (detailsGroup) {
+              detailsGroup.classList.remove('hidden');
+            }
+          }, 500);
+
           saveToHistory(calculatedResults);
         }, 2000);
       };
@@ -747,6 +761,10 @@
         handleRateInput();
         hideAlert();
         resultsSection.classList.add('hidden');
+        const detailsGroup = document.getElementById('calculation-details-group');
+        if (detailsGroup) {
+          detailsGroup.classList.add('hidden');
+        }
         calculatedResults = null;
         
         showToast(translations.en.resetToast);
